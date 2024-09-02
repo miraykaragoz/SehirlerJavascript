@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Anasayfa";
+}
+
+<h1>Şehirler Listesi</h1>
+<p class="allCities"></p>
+
+<h2>Yemekleriyle Ünlü Şehirler</h2>
+<p class="foodFamous"></p>
+
+<h2>Tarihi Yerleriyle Ünlü Şehirler</h2>
+<p class="placeFamous"></p>
+
+<h2>Tek Plakalı Şehirler</h2>
+<p class="oddPlateCities"></p>
+
+<h2>Çift Plakalı Şehirler</h2>
+<p class="evenPlateCities"></p>
+
+<script src="/js/cities.js"></script>
+<script>
+    let allCities = document.querySelector('.allCities');
+    let foodFamous = document.querySelector('.foodFamous');
+    let placeFamous = document.querySelector('.placeFamous');
+    let oddPlateCities = document.querySelector('.oddPlateCities');
+    let evenPlateCities = document.querySelector('.evenPlateCities');
+
+    for (let city of cities) {
+        allCities.innerHTML += `<span>${city.name}</span><br>`;
+
+        if (city.type === 'food') {
+            foodFamous.innerHTML += `<span>${city.name} - ${city.famousFor}</span><br>`;
+        } else if (city.type === 'place') {
+            placeFamous.innerHTML += `<span>${city.name} - ${city.famousFor}</span><br>`;
+        }
+
+        if (Number(city.plateNumber) % 2 === 0) {
+            evenPlateCities.innerHTML += `<span>${city.name} - ${city.plateNumber}</span><br>`;
+        } else {
+            oddPlateCities.innerHTML += `<span>${city.name} - ${city.plateNumber}</span><br>`;
+        }
+    }
+</script>
